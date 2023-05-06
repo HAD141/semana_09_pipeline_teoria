@@ -1,8 +1,8 @@
 stages:
   step_requirements:
-    cmd: pip install -r requitements
+    cmd: pip install -r requirements
     deps:
-    - requitements
+    - requirements
 
   step_get_data:
     cmd: python src/run_get_raw_data.py

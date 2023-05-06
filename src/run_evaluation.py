@@ -1,4 +1,5 @@
 import json
+import os
 import pandas as pd
 import pickle
 import sklearn.metrics as metrics
@@ -21,7 +22,7 @@ def evaluate(metrics_file:str = "metrics.json",
     # extraemos el/los directorios
     folder = os.path.dirname(metrics_file)
     # verificamos si existe el directorio "dataset"
-    if not os.path.exists(folder):
+    if len(folder) > 0 and not os.path.exists(folder):
         # sino existe lo creamos
         os.makedirs(folder, exist_ok=True)
 
