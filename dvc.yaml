@@ -1,16 +1,17 @@
 stages:
+  # instalación de requerimientos
   step_requirements:
     cmd: pip install -r requirements
     deps:
     - requirements
-
+  # obtención del dataset crudo sin procesar
   step_get_data:
     cmd: python src/run_get_raw_data.py
     deps:
     - src/run_get_raw_data.py
     outs:
     - dataset/forecast_raw.csv
-
+  # preparación de los datos
   step_prepare_data:
     cmd: python src/run_prepare_data.py
     deps:
@@ -20,7 +21,7 @@ stages:
     - prepare.parking
     outs:
     - dataset/forecast_prepared.csv
-
+  # entrenamiento del modelo
   step_train:
     cmd: python src/run_train.py
     deps:
@@ -32,7 +33,7 @@ stages:
     - train.steps
     outs:
     - models/model.pickle
-    
+  # evaluación del modelo  
   step_evaluation:
     cmd: python src/run_evaluation.py
     deps:
