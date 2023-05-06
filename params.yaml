@@ -1,0 +1,7 @@
+prepare:
+  parking: "Easo"
+
+train:
+  seed: 1234
+  steps: 36
+  lags: 15
