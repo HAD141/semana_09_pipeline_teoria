@@ -1,0 +1,47 @@
+stages:
+  step_requirements:
+    cmd: pip install -r requitements
+    deps:
+    - requitements
+
+  step_get_data:
+    cmd: python src/run_get_raw_data.py
+    deps:
+    - src/run_get_raw_data.py
+    outs:
+    - dataset/forecast_raw.csv
+
+  step_prepare_data:
+    cmd: python src/run_prepare_data.py
+    deps:
+    - dataset/forecast_raw.csv
+    - src/run_prepare_data.py
+    params:
+    - prepare.parking
+    outs:
+    - dataset/forecast_prepared.csv
+
+  step_train:
+    cmd: python src/run_train.py
+    deps:
+    - dataset/forecast_prepared.csv
+    - src/run_train.py
+    params:
+    - train.lags
+    - train.seed
+    - train.steps
+    outs:
+    - models/model.pickle
+    
+  step_evaluation:
+    cmd: python src/run_evaluate.py
+    deps:
+    - dataset/forecast_prepared.csv
+    - models/model.pickle
+    - src/run_evaluation.py
+    params:
+    - train.steps
+    metrics:
+    - metrics.json:
+        cache: false
+        
