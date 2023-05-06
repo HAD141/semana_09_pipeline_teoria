@@ -34,7 +34,7 @@ stages:
     - models/model.pickle
     
   step_evaluation:
-    cmd: python src/run_evaluate.py
+    cmd: python src/run_evaluation.py
     deps:
     - dataset/forecast_prepared.csv
     - models/model.pickle
