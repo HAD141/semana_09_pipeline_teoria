@@ -1,9 +1,4 @@
 stages:
-  # instalación de requerimientos
-  step_requirements:
-    cmd: pip install -r requirements
-    deps:
-    - requirements
   # obtención del dataset crudo sin procesar
   step_get_data:
     cmd: python src/run_get_raw_data.py
